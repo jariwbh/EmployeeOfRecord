@@ -1,15 +1,15 @@
 <form [formGroup]="leaveTypeForm" (ngSubmit)="onSubmit()" class="leave-type-form">
     <div class="form-group">
-        <label for="leaveTypeName">Leave Type Name:</label>
-        <input type="text" id="leaveTypeName" formControlName="leaveTypeName" required class="form-control">
+        <label for="name">Leave Type Name:</label>
+        <input type="text" id="name" formControlName="name" required class="form-control">
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label for="leaveTypeDescription">Description:</label>
         <textarea id="leaveTypeDescription" formControlName="leaveTypeDescription" required class="form-control"></textarea>
-    </div>
+    </div> -->
     <div class="form-group">
-        <label for="leaveTypeDuration">Duration (days):</label>
-        <input type="number" id="leaveTypeDuration" formControlName="leaveTypeDuration" required class="form-control">
+        <label for="maxDays">Duration (days):</label>
+        <input type="number" id="maxDays" formControlName="maxDays" required class="form-control">
     </div>
     <div class="form-group">
         <button type="submit" [disabled]="leaveTypeForm.invalid" class="btn btn-primary">Submit</button>

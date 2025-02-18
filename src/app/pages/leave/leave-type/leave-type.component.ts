@@ -12,7 +12,7 @@ export class LeaveTypeComponent implements OnInit {
     constructor(private fb: FormBuilder) {
         this.leaveTypeForm = this.fb.group({
             name: ['', Validators.required],
-            description: [''],
+            // description: [''],
             maxDays: ['', [Validators.required, Validators.min(1)]]
         });
      }
