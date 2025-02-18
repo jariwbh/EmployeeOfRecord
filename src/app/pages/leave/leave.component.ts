@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-leave',
   templateUrl: './leave.component.html',
-  styleUrls: ['./leave.component.scss']
+  styleUrls: ['./leave.component.css']
 })
 export class LeaveComponent implements OnInit {
   activeTab: string = 'request';

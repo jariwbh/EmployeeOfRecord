@@ -1,40 +1,13 @@
-<div class="leave-management">
-  <ul class="tabs">
-    <li [class.active]="activeTab === 'request'" (click)="selectTab('request')">Leave Request</li>
-    <li [class.active]="activeTab === 'type'" (click)="selectTab('type')">Leave Type</li>
+<div class="submenu">
+  <ul class="submenu-list">
+    <li class="submenu-item">
+      <a [routerLink]="['/pages/leave/leave-request']" class="submenu-link">Leave Request</a>
+    </li>
+    <li class="submenu-item">
+      <a [routerLink]="['/pages/leave/leave-type']" class="submenu-link">Leave Type</a>
+    </li>
+    <li class="submenu-item">
+      <a [routerLink]="['/pages/leave/leave-balance']" class="submenu-link">Leave Balance</a>
+    </li>
   </ul>
-
-  <div class="tab-content">
-    <!-- Leave Request Tab -->
-    <div *ngIf="activeTab === 'request'">
-      <h2>Leave Request</h2>
-      <form [formGroup]="leaveRequestForm" (ngSubmit)="submitLeaveRequest()">
-        <label for="leaveType">Leave Type:</label>
-        <select formControlName="leaveType" id="leaveType">
-          <option value="sick">Sick Leave</option>
-          <option value="casual">Casual Leave</option>
-          <option value="annual">Annual Leave</option>
-        </select>
-
-        <label for="startDate">Start Date:</label>
-        <input type="date" formControlName="startDate" id="startDate">
-
-        <label for="endDate">End Date:</label>
-        <input type="date" formControlName="endDate" id="endDate">
-
-        <label for="reason">Reason:</label>
-        <textarea formControlName="reason" id="reason" rows="4"></textarea>
-
-        <button type="submit">Submit Request</button>
-      </form>
-    </div>
-
-    <!-- Leave Type Tab -->
-    <div *ngIf="activeTab === 'type'">
-      <h2>Leave Type</h2>
-      <ul>
-        <li *ngFor="let type of leaveTypes">{{ type }}</li>
-      </ul>
-    </div>
-  </div>
 </div>
