@@ -34,11 +34,11 @@ export class LeaveTypeListComponent implements OnInit {
     console.log('leavetype =>', leavetype);
     this.leaveTypeService.deleteLeaveType(leavetype._id).subscribe(
       (response: any) => {
-        console.log('Staff deleted successfully', response);
+        console.log('Leave type deleted successfully', response);
         this.getLeaveTypes(); // Refresh the list after deletion
       },
       (error) => {
-        console.error('Error deleting staff', error);
+        console.error('Error deleting leave type', error);
       }
     );
   }

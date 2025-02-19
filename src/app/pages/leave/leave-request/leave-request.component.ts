@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LeaveTypeService } from '../../../services/leave-type.service';
+import { LeaveRequestService } from '../../../services/leave-request.service'; // Import the service
 
 @Component({
     selector: 'app-leave-request',
@@ -8,8 +10,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LeaveRequestComponent implements OnInit {
     leaveRequestForm: FormGroup;
+    leaveTypes: any[] = [];
 
-    constructor() {
+    constructor(
+        private leaveTypeService: LeaveTypeService,
+        private leaveRequestService: LeaveRequestService // Inject the service
+    ) {
         this.leaveRequestForm = new FormGroup({
             leaveType: new FormControl('', Validators.required),
             startDate: new FormControl('', Validators.required),
@@ -19,12 +25,26 @@ export class LeaveRequestComponent implements OnInit {
     }
 
     ngOnInit() {
-        
+        this.getLeaveTypes();
+    }
+
+    getLeaveTypes(): void {
+        this.leaveTypeService.getLeaveTypes().subscribe((data: any) => {
+            this.leaveTypes = data;
+            console.log('this.leaveTypes =>', this.leaveTypes);
+        });
     }
 
     onSubmit() {
         if (this.leaveRequestForm.valid) {
-            console.log(this.leaveRequestForm.value);
+            this.leaveRequestService.createLeaveRequest(this.leaveRequestForm.value).subscribe(
+                (response: any) => {
+                    console.log('Leave request saved successfully', response);
+                },
+                (error: any) => {
+                    console.error('Error saving leave request', error);
+                }
+            );
         }
     }
 }

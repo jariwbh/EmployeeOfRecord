@@ -1,15 +1,8 @@
 <form [formGroup]="leaveRequestForm" (ngSubmit)="onSubmit()">
     <div>
-        <label for="employeeName">Employee Name:</label>
-        <input id="employeeName" formControlName="employeeName" type="text">
-    </div>
-    
-    <div>
         <label for="leaveType">Leave Type:</label>
         <select id="leaveType" formControlName="leaveType">
-            <option value="sick">Sick Leave</option>
-            <option value="casual">Casual Leave</option>
-            <option value="annual">Annual Leave</option>
+            <option *ngFor="let leaveType of leaveTypes" [value]="leaveType._id">{{ leaveType.name }}</option>
         </select>
     </div>
     
