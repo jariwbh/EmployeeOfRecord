@@ -1,0 +1,28 @@
+
+<button [routerLink]="['/pages/leave']" class="back-button">
+    <i class="material-icons">arrow_back</i> Back
+</button>
+<button [routerLink]="['/pages/leave/leave-type']" class="add-button">
+    <i class="material-icons">add</i> Add Leave Type
+</button>
+<table class="staff-list">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Max Days</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let leaveType of leaveTypes">
+            <td>{{ leaveType.name }}</td>
+            <td>{{ leaveType.maxDays }}</td>
+            <td>
+                <button (click)="editLeaveType(leaveType)"><i class="material-icons">edit</i></button>
+                <button (click)="deleteLeaveType(leaveType)"><i class="material-icons">delete</i></button>
+    
+            </td>
+        </tr>
+    </tbody>
+</table>

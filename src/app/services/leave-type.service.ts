@@ -11,7 +11,7 @@ export class LeaveTypeService {
   constructor(private http: HttpClient) {}
 
   getLeaveTypes(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+    return this.http.get<any>(`${this.apiUrl}/get`);
   }
 
   getLeaveType(id: string): Observable<any> {
@@ -29,6 +29,6 @@ export class LeaveTypeService {
   }
 
   deleteLeaveType(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+    return this.http.delete<any>(`${this.apiUrl}/delete/${id}`);
   }
 }

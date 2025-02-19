@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { createLeaveType } = require("../controller/leaveType.controller");
-// router.get('/', leaveTypeController.getLeaveTypes);
-// router.get('/:id', leaveTypeController.getLeaveType);
+const { createLeaveType, getLeaveTypes, getLeaveType, deleteLeaveType } = require("../controller/leaveType.controller");
+router.get('/get', getLeaveTypes);
+router.get('/:id', getLeaveType);
 router.post('/add', createLeaveType);
 // router.put('/:id', leaveTypeController.updateLeaveType);
-// router.delete('/:id', leaveTypeController.deleteLeaveType);
+router.delete('/delete/:id', deleteLeaveType);
 
 module.exports = router;

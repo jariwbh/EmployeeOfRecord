@@ -6,12 +6,14 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeaveRequestComponent } from './leave-request/leave-request.component';
 import { LeaveTypeComponent } from './leave-type/leave-type.component';
+import { LeaveTypeListComponent } from './leave-type-list/leavetype-list.component';
 
 @NgModule({
   declarations: [
     LeaveComponent,
     LeaveRequestComponent,
-    LeaveTypeComponent
+    LeaveTypeComponent,
+    LeaveTypeListComponent
   ],
   imports: [
     CommonModule,
