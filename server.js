@@ -20,5 +20,8 @@ mongoose
 const employeeRoutes = require("./server/route/employee.route");
 app.use("/employees", employeeRoutes); // Ensure this is correct!
 
+const leaveTypeRoutes = require("./server/route/leaveType.route");
+app.use("/leavetype", leaveTypeRoutes); // Ensure this is correct!
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

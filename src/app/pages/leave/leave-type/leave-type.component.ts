@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LeaveTypeService } from '../../../services/leave-type.service';
 
 @Component({
     selector: 'app-leave-type',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LeaveTypeComponent implements OnInit {
     leaveTypeForm: FormGroup;
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, private leaveTypeService: LeaveTypeService) {
         this.leaveTypeForm = this.fb.group({
             name: ['', Validators.required],
             // description: [''],
@@ -23,8 +24,13 @@ export class LeaveTypeComponent implements OnInit {
 
     onSubmit(): void {
         if (this.leaveTypeForm.valid) {
-            console.log(this.leaveTypeForm.value);
-            // Handle form submission logic here
+            this.leaveTypeService.createLeaveType(this.leaveTypeForm.value).subscribe(response => {
+                console.log('Leave type created successfully', response);
+                // Handle successful form submission logic here
+            }, error => {
+                console.error('Error creating leave type', error);
+                // Handle error logic here
+            });
         }
     }
 }
