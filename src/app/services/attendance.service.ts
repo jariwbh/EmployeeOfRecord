@@ -13,4 +13,8 @@ export class AttendanceService {
   saveAttendance(attendanceData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/add`, attendanceData);
   }
+
+  getAttendanceRecords(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/get`);
+  }
 }

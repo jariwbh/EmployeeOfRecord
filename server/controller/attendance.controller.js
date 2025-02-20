@@ -22,3 +22,12 @@ exports.saveAttendance = async (req, res) => {
     res.status(500).json({ message: 'Server error', error });
   }
 };
+
+exports.getAttendanceRecords = async (req, res) => {
+  try {
+    const attendanceRecords = await Attendance.find();
+    res.status(200).json(attendanceRecords);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+};

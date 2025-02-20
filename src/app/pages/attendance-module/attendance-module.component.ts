@@ -5,11 +5,13 @@ import { AttendanceService } from '../../services/attendance.service';
 
 @Component({
   selector: 'app-attendance-module',
-  templateUrl: './attendance-module.component.html'
+  templateUrl: './attendance-module.component.html',
+  styleUrls: ['./attendance-module.component.scss']
 })
 export class AttendanceModuleComponent implements OnInit {
   employees: any[] = [];
   attendanceForm: FormGroup;
+  attendanceRecords: any[] = [];
 
   constructor(
     private employeeService: EmployeeService,
@@ -24,45 +26,66 @@ export class AttendanceModuleComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.getEmployees();
+  async ngOnInit() {
+    await this.getEmployees();
+
+    await this.getAttendanceRecords();
   }
 
-  getEmployees(): void {
+  async getEmployees() {
     this.employeeService.getEmployees().subscribe((data: any[]) => {
       this.employees = data;
-      console.log('this.employees =>', this.employees);
+      console.log('Employees:', this.employees);
+    }, error => {
+      console.error('Error fetching employees:', error);
     });
   }
 
-  onSubmit(): void {
-    if (this.attendanceForm.valid) {
-      const attendanceRecord = this.attendanceForm.value;
-      this.convertToUTC(attendanceRecord);
+  async getAttendanceRecords() {
+    this.attendanceService.getAttendanceRecords().subscribe((data: any[]) => {
+      this.attendanceRecords = data;
 
-      this.attendanceService.saveAttendance(attendanceRecord).subscribe(response => {
-        console.log('Attendance Record Submitted:', response);
-        this.attendanceForm.reset();
-      }, error => {
-        console.error('Error submitting attendance record:', error);
+      this.attendanceRecords.forEach(record => {
+        // record.date = new Date(record.date).toLocaleDateString();
+        // record.checkin = new Date(record.checkin).toLocaleTimeString();
+        // record.checkout = new Date(record.checkout).toLocaleTimeString();
+        record.employee = this.employees.find(employee => employee._id === record.employeeId);
       });
-    } else {
-      console.log('Form is invalid');
-    }
+      console.log('Attendance Records:', this.attendanceRecords);
+    }, error => {
+      console.error('Error fetching attendance records:', error);
+    });
   }
 
-  private convertToUTC(attendanceRecord: any): void {
-    const date = new Date(attendanceRecord.date);
-    attendanceRecord.date = date.toISOString();
+  // onSubmit(): void {
+  //   if (this.attendanceForm.valid) {
+  //     const attendanceRecord = this.attendanceForm.value;
+  //     this.convertToUTC(attendanceRecord);
 
-    const checkinTime = new Date(attendanceRecord.date);
-    const [checkinHours, checkinMinutes] = attendanceRecord.checkin.split(':');
-    checkinTime.setHours(parseInt(checkinHours, 10), parseInt(checkinMinutes, 10));
-    attendanceRecord.checkin = checkinTime;
+  //     this.attendanceService.saveAttendance(attendanceRecord).subscribe(response => {
+  //       console.log('Attendance Record Submitted:', response);
+  //       this.attendanceForm.reset();
+  //       this.getAttendanceRecords(); // Refresh the attendance records
+  //     }, error => {
+  //       console.error('Error submitting attendance record:', error);
+  //     });
+  //   } else {
+  //     console.log('Form is invalid');
+  //   }
+  // }
 
-    const checkoutTime = new Date(attendanceRecord.date);
-    const [checkoutHours, checkoutMinutes] = attendanceRecord.checkout.split(':');
-    checkoutTime.setHours(parseInt(checkoutHours, 10), parseInt(checkoutMinutes, 10));
-    attendanceRecord.checkout = checkoutTime;
-  }
+  // private convertToUTC(attendanceRecord: any): void {
+  //   const date = new Date(attendanceRecord.date);
+  //   attendanceRecord.date = date.toISOString();
+
+  //   const checkinTime = new Date(attendanceRecord.date);
+  //   const [checkinHours, checkinMinutes] = attendanceRecord.checkin.split(':');
+  //   checkinTime.setHours(parseInt(checkinHours, 10), parseInt(checkinMinutes, 10));
+  //   attendanceRecord.checkin = checkinTime;
+
+  //   const checkoutTime = new Date(attendanceRecord.date);
+  //   const [checkoutHours, checkoutMinutes] = attendanceRecord.checkout.split(':');
+  //   checkoutTime.setHours(parseInt(checkoutHours, 10), parseInt(checkoutMinutes, 10));
+  //   attendanceRecord.checkout = checkoutTime;
+  // }
 }

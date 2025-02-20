@@ -1,0 +1,108 @@
+.attendance-module {
+    font-family: Arial, sans-serif;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.attendance-module h1 {
+    text-align: center;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+button[type="submit"] {
+    width: 100%;
+}
+
+.add-attendance-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #3f51b5;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-attendance-button:hover {
+    background-color: #303f9f;
+}
+
+.add-attendance-button i.material-icons {
+    margin-right: 8px;
+}
+
+.attendance-list {
+    margin-top: 30px;
+}
+
+.attendance-list h2 {
+    text-align: center;
+    color: #333;
+}
+
+.attendance-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.attendance-list th,
+.attendance-list td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: left;
+}
+
+.attendance-list th {
+    background-color: #3f51b5; /* Replace with the actual sidebar background color */
+    color: #fff;
+    font-weight: bold;
+}
+
+.attendance-list tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.attendance-list tr:hover {
+    background-color: #f1f1f1;
+}
+
+.button-container {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.mat-select-panel .mat-option {
+    background-color: #fff;
+    color: #333;
+    font-size: 14px;
+}
+
+.mat-select-panel .mat-option:hover {
+    background-color: #e0e0e0;
+}
+
+.mat-select-panel .mat-option.mat-selected {
+    background-color: #d1e7dd;
+    color: #000;
+}
+
+.cdk-overlay-backdrop {
+    background-color: transparent !important;
+}

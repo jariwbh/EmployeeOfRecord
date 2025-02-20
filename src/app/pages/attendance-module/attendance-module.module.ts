@@ -9,9 +9,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { AttendanceFormComponent } from './attendance-form/attendance-form.component';
 
 @NgModule({
-  declarations: [AttendanceModuleComponent],
+  declarations: [AttendanceModuleComponent,
+    AttendanceFormComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(AttendanceModuleRoutes),

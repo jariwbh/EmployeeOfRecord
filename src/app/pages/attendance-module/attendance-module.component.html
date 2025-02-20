@@ -1,54 +1,33 @@
-<div class="attendance-module" style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
-    <h1 style="text-align: center; color: #333;">Attendance Module</h1>
-    
-    <form [formGroup]="attendanceForm" (ngSubmit)="onSubmit()">
-        <div class="form-group" style="margin-bottom: 15px;">
-            <label for="employeeId" style="display: block; margin-bottom: 5px;">Employee ID:</label>
-            <select id="employeeId" formControlName="employeeId" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-                <option *ngFor="let employee of employees" [value]="employee._id">{{ employee.fullname }} || {{employee.email}}</option>
-            </select>
-        </div>
-        
-        <div class="form-group" style="margin-bottom: 15px;">
-            <label for="date" style="display: block; margin-bottom: 5px;">Date:</label>
-            <input type="date" id="date" formControlName="date" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-        </div>
-        
+<div class="attendance-module">
+    <div class="button-container">
+        <button mat-raised-button color="primary" class="add-attendance-button" style="float: right;" [routerLink]="['/pages/attendance/attendance-form']">
+            <i class="material-icons">add</i>
+            <span>Add Attendance</span>
+        </button>
+    </div>
 
-        <div class="form-group" style="margin-bottom: 15px;">
-            <label for="checkin" style="display: block; margin-bottom: 5px;">Checkin Time:</label>
-            <input type="time" id="checkin" formControlName="checkin" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-        </div>
-
-        <div class="form-group" style="margin-bottom: 15px;">
-            <label for="checkout" style="display: block; margin-bottom: 5px;">Checkout Time:</label>
-            <input type="time" id="checkout" formControlName="checkout" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-        </div>
-        
-        <!-- <div class="form-group" style="margin-bottom: 15px;">
-            <label for="status" style="display: block; margin-bottom: 5px;">Status:</label>
-            <select id="status" formControlName="status" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-                <option value="present">Present</option>
-                <option value="absent">Absent</option>
-                <option value="leave">On Leave</option>
-            </select>
-        </div> -->
-        
-        <button type="submit" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
-    </form>
-    
-    <div class="attendance-list" style="margin-top: 30px;">
-        <h2 style="text-align: center; color: #333;">Attendance Records</h2>
-        <table style="width: 100%; border-collapse: collapse;">
+    <div class="attendance-list">
+        <h2>Attendance Records</h2>
+        <table>
             <thead>
-                <tr>
-                    <th style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2;">Employee ID</th>
-                    <th style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2;">Date</th>
-                    <th style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2;">Status</th>
-                </tr>
+            <tr>
+                <th>Employee Name</th>
+                <th>Date</th>
+                <th>Check-in Time</th>
+                <th>Check-out Time</th>
+                <th>Status</th>
+            </tr>
             </thead>
             <tbody>
-                <!-- Attendance records will be dynamically inserted here -->
+            <tr *ngFor="let record of attendanceRecords">
+                <td>{{ record.employee.fullname }}</td>
+                <td>{{ record.date | date: 'dd-MM-yyyy' }}</td>
+                <td>{{ record.checkin | date: 'hh:mm a' }}</td>
+                <td>{{ record.checkout | date: 'hh:mm a' }}</td>
+                <td [ngStyle]="{ 'color': record.checkin && record.checkout ? 'green' : 'red' }">
+                    {{ record.checkin && record.checkout ? 'Present' : 'Absent' }}
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
