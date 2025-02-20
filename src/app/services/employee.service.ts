@@ -39,4 +39,8 @@ export class EmployeeService {
     return this.http.post<any>(`${this.apiUrl}/login`, { email, password });
   }
   
+  updateStaff(staff: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/update/${staff._id}`, staff);
+  }
+  
 }

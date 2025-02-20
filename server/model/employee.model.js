@@ -8,8 +8,11 @@ const EmployeeSchema = new mongoose.Schema({
   designation: { type: String },
   phonenumber: { type: String },
   dateofbirth: { type: Date },
-  joiningdate: { type: Date }
-
+  joiningdate: { type: Date },
+  salaryComponent: {
+    basic: { type: Number },
+    tax: { type: Number }
+  }
 });
 
 // ✅ Hash password before saving

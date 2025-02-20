@@ -92,7 +92,7 @@ exports.updateEmployeeByID = async (req, res) => {
     console.log('id =>', id);
     console.log('updates =>', updates);
     const updatedEmployee = await Employee.findByIdAndUpdate(id, updates, { new: true });
-
+    console.log('updatedEmployee =>', updatedEmployee);
     if (!updatedEmployee) {
       return res.status(404).json({ message: "Employee not found" });
     }

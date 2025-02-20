@@ -49,8 +49,8 @@ export class StaffFormComponent implements OnInit {
           designation: data.designation,
           phonenumber: data.phonenumber,
           email: data.email,
-          dateofbirth: new Date(data.dateofbirth).toISOString().substring(0, 10),
-          joiningdate: new Date(data.joiningdate).toISOString().substring(0, 10)
+          dateofbirth: data && data.dateofbirth ? new Date(data.dateofbirth).toISOString().substring(0, 10) : data?.dateofbirth,
+          joiningdate: data && data.joiningdate ? new Date(data.joiningdate).toISOString().substring(0, 10) : data?.joiningdate
         });
         console.log('this.staffForm =>', this.staffForm);
       },

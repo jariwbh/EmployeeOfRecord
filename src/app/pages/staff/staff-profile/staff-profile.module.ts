@@ -4,10 +4,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StaffProfileComponent } from './staff-profile.component';
 import { routing } from './staff-profile.routing';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { StaffSalaryComponent } from './staff-salary/staff-salary.component';
 
 @NgModule({
   declarations: [
-    StaffProfileComponent
+    StaffProfileComponent,
+    StaffSalaryComponent
   ],
   imports: [
     CommonModule,

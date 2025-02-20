@@ -1,7 +1,7 @@
-<div class="staff-profile">
+<div class="staff-profile" *ngIf="staff">
     <h1 class="staff-profile-title" style="margin-top: 0;">Staff Profile</h1>
     
-    <div class="profile-details" *ngIf="staff">
+    <div class="profile-details" >
         <div class="profile-photo">
             <img [src]="staff && staff.photoUrl ? staff.photoUrl : '../assets/img/default-avatar.png'" alt="Profile Photo">
         </div>
@@ -32,6 +32,7 @@
                     Salary Details
                 </mat-panel-title>
             </mat-expansion-panel-header>
+            <app-staff-salary [staff]="staff"></app-staff-salary>
             <!-- <div class="profile-item">
                 <label>Basic Salary:</label>
                 <span>{{ staff.salary.basic }}</span>
