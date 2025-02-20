@@ -15,6 +15,10 @@ export const StaffRoutes: Routes = [
       { 
         path: 'staff-list', 
         loadChildren: () => import('./staff-list/staff-list.module').then(m => m.StaffListModule),
+      },
+      { 
+        path: 'profile', 
+        loadChildren: () => import('./staff-profile/staff-profile.module').then(m => m.StaffProfileModule),
       }
     ],
   },

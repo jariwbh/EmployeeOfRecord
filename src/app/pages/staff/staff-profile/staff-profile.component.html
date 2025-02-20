@@ -1,0 +1,81 @@
+<div class="staff-profile">
+    <h1 class="staff-profile-title" style="margin-top: 0;">Staff Profile</h1>
+    
+    <div class="profile-details" *ngIf="staff">
+        <div class="profile-photo">
+            <img [src]="staff && staff.photoUrl ? staff.photoUrl : '../assets/img/default-avatar.png'" alt="Profile Photo">
+        </div>
+        <div>
+            <div class="profile-item">
+                <label>Name:</label>
+                <span>{{ staff.fullname }}</span>
+            </div>
+            <div class="profile-item">
+                <label>Email:</label>
+                <span>{{ staff.email }}</span>
+            </div>
+            <div class="profile-item">
+                <label>Position:</label>
+                <span>{{ staff.position }}</span>
+            </div>
+            <div class="profile-item">
+                <label>Department:</label>
+                <span>{{ staff.department }}</span>
+            </div>
+        </div>
+    </div>
+
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Salary Details
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <!-- <div class="profile-item">
+                <label>Basic Salary:</label>
+                <span>{{ staff.salary.basic }}</span>
+            </div>
+            <div class="profile-item">
+                <label>Allowances:</label>
+                <span>{{ staff.salary.allowances }}</span>
+            </div>
+            <div class="profile-item">
+                <label>Deductions:</label>
+                <span>{{ staff.salary.deductions }}</span>
+            </div>
+            <div class="profile-item">
+                <label>Net Salary:</label>
+                <span>{{ staff.salary.net }}</span>
+            </div> -->
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Attendance Records
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <!-- <div *ngFor="let record of staff.attendanceRecords">
+                <div class="profile-item">
+                    <label>Date:</label>
+                    <span>{{ record.date | date: 'dd-MM-yyyy' }}</span>
+                </div>
+                <div class="profile-item">
+                    <label>Check-in Time:</label>
+                    <span>{{ record.checkin | date: 'hh:mm a' }}</span>
+                </div>
+                <div class="profile-item">
+                    <label>Check-out Time:</label>
+                    <span>{{ record.checkout | date: 'hh:mm a' }}</span>
+                </div>
+                <div class="profile-item">
+                    <label>Status:</label>
+                    <span [ngStyle]="{ 'color': record.checkin && record.checkout ? 'green' : 'red' }">
+                        {{ record.checkin && record.checkout ? 'Present' : 'Absent' }}
+                    </span>
+                </div>
+            </div> -->
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let staff of staffList">
+      <tr *ngFor="let staff of staffList" [routerLink]="['/pages/staff/profile/', staff._id]">
         <td>{{ staff.fullname }}</td>
         <td>{{ staff.email }}</td>
         <td>{{ staff.designation }}</td>
@@ -21,10 +21,8 @@
         <td>{{ staff.dateofbirth }}</td>
         <td>{{ staff.joiningdate }}</td>
         <td>
-            <button (click)="editStaff(staff)"><i class="material-icons">edit</i></button>
-            <button (click)="deleteStaff(staff)"><i class="material-icons">delete</i></button>
-
-            <!-- <button (click)="deleteStaff(staff)"><i class="fas fa-trash-alt"></i></button> -->
+        <button (click)="editStaff(staff); $event.stopPropagation()"><i class="material-icons">edit</i></button>
+        <button (click)="deleteStaff(staff); $event.stopPropagation()"><i class="material-icons">delete</i></button>
         </td>
       </tr>
     </tbody>
