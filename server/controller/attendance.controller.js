@@ -31,3 +31,13 @@ exports.getAttendanceRecords = async (req, res) => {
     res.status(500).json({ message: 'Server error', error });
   }
 };
+
+exports.getAttendanceRecordsByEmployeeId = async (req, res) => {
+  try {
+    const employeeId = req.params.employeeId;
+    const attendanceRecords = await Attendance.find({ employeeId: employeeId });
+    res.status(200).json(attendanceRecords);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching attendance records', error });
+  }
+};

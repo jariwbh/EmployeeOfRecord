@@ -17,4 +17,8 @@ export class AttendanceService {
   getAttendanceRecords(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/get`);
   }
+
+  getAttendanceByEmployeeId(employeeId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/employee/${employeeId}`);
+  }
 }
