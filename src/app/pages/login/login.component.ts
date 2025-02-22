@@ -5,7 +5,8 @@ import { EmployeeService } from '../../services/employee.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   loginForm: FormGroup;
@@ -28,6 +29,8 @@ export class LoginComponent {
         success => {
           console.log('success =>', success);
           if (success) {
+            // Save employee data to local storage
+            localStorage.setItem('employeeData', JSON.stringify(success));
             this.router.navigate(['pages/dashboard']);
           } else {
             alert('Login failed: Invalid username or password');
