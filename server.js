@@ -29,6 +29,9 @@ app.use("/leaverequest", leaveRequestRoutes); // Ensure this is correct!
 const attendanceRoutes = require("./server/route/attendance.route");
 app.use("/attendance", attendanceRoutes); // Ensure this is correct!
 
+const payrollRoutes = require("./server/route/payroll.route");
+app.use("/payroll", payrollRoutes); // Ensure this is correct!
+
 
 
 const PORT = process.env.PORT || 3000;

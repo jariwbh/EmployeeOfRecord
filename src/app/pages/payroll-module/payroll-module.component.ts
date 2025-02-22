@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service'; // Import the EmployeeService
 import { AttendanceService } from '../../services/attendance.service';
+import { PayrollService } from '../../services/payroll.service'; // Import the PayrollService
 
 @Component({
     selector: 'app-payroll-module',
@@ -14,7 +15,8 @@ export class PayrollModuleComponent implements OnInit {
     totalEmployees: number = 0;
 
     constructor(private employeeService: EmployeeService,
-                private attendanceService: AttendanceService) { } // Inject the EmployeeService
+                private attendanceService: AttendanceService,
+                private payrollService: PayrollService) { } // Inject the PayrollService
 
     async ngOnInit() {
         // Initialization logic here
@@ -51,11 +53,18 @@ export class PayrollModuleComponent implements OnInit {
         this.totalEmployees = this.employeeData.length;
     }
 
-    processPayroll(payroll: any): void {
+    async processPayroll(payroll: any): Promise<void> {
+        console.log('payroll =>', payroll);
         // Logic to process payroll
         console.log('Processing payroll for', payroll);
-        // Redirect to the payroll process page
-        window.location.href = '/pages/payroll/payroll-process';
+        try {
+            await this.payrollService.savePayrollData(payroll).toPromise();
+            console.log('Payroll data saved successfully');
+            // Redirect to the payroll process page
+            window.location.href = '/pages/payroll/payroll-process';
+        } catch (error) {
+            console.error('Error saving payroll data', error);
+        }
     }
 
     // Add your methods and properties for payroll module here

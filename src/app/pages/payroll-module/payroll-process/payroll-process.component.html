@@ -1,10 +1,10 @@
 <h1>Payroll Process</h1>
-<div >
+<div *ngIf="employeeData.length > 0">
     <table>
         <thead>
             <tr>
                 <th>Employee Name</th>
-                <th>Salary Components</th>
+                <th *ngFor=" let c of employeeData[0].salaryComponent">{{c.component}}</th>
                 <th>Total Presents</th>
                 <th>Total Leave</th>
             </tr>
@@ -12,8 +12,16 @@
         <tbody>
             <tr *ngFor="let employee of employeeData">
                 <td>{{ employee.fullname }}</td>
-                <td>{{ employee.salaryComponents }}</td>
-                <td>{{ getTotalPresents(employee.id) }}</td>
+                <ng-container *ngIf="employee.salaryComponent && employee.salaryComponent.length > 0;">
+                    <td *ngFor="let c of employee.salaryComponent">
+                        {{ c.value ? c.value : '-' }}
+                    </td>
+                </ng-container>
+                <ng-container *ngIf="!employee.salaryComponent || employee.salaryComponent.length === 0">
+                    <td>-</td>
+                    <td>-</td>
+                </ng-container>
+                <td>{{ getTotalPresents(employee) }}</td>
                 <td>{{ getTotalLeave(employee.id) }}</td>
             </tr>
         </tbody>

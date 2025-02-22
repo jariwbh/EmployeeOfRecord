@@ -27,11 +27,12 @@ export class PayrollProcessComponent implements OnInit {
     async fetchAttendanceRecords() {
         this.attendanceRecords = await this.attendanceService.getAttendanceRecords().toPromise() || [];
         console.log('this.attendanceRecords =>', this.attendanceRecords);
+      
     }
 
-    getTotalPresents(employeeId: number): number {
-        const record = this.attendanceRecords.find(record => record.employeeId === employeeId);
-        return record ? record.daysPresent : 0;
+    getTotalPresents(employee: any) {
+        const record = this.attendanceRecords.filter(record => record.employeeId === employee._id);
+        return record ? record.length : 0;
     }
 
     getTotalLeave(employeeId: number): number {

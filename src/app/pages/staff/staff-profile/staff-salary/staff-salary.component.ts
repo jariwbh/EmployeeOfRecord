@@ -40,11 +40,15 @@ export class StaffSalaryComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.staff.salaryComponent = [];
     if (this.salaryForm.valid) {
         console.log(this.salaryForm.value);
-        this.staff.salaryComponent = this.salaryForm.value;
+        for (const key in this.salaryForm.value){
+          console.log('key =>', key);
+          this.staff.salaryComponent.push({ component: key, value: this.salaryForm.value[key] });
+        }
+
         console.log('staff =>', this.staff);
-        // Assuming you have a service to handle HTTP requests
         this.staffService.updateStaff(this.staff).subscribe(
             (response: any) => {
             console.log('Staff data updated successfully', response);
