@@ -1,1 +1,21 @@
 <h1>Payroll Process</h1>
+<div >
+    <table>
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Salary Components</th>
+                <th>Total Presents</th>
+                <th>Total Leave</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employeeData">
+                <td>{{ employee.fullname }}</td>
+                <td>{{ employee.salaryComponents }}</td>
+                <td>{{ getTotalPresents(employee.id) }}</td>
+                <td>{{ getTotalLeave(employee.id) }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
