@@ -32,6 +32,9 @@ app.use("/attendance", attendanceRoutes); // Ensure this is correct!
 const payrollRoutes = require("./server/route/payroll.route");
 app.use("/payroll", payrollRoutes); // Ensure this is correct!
 
+const advanceRoutes = require("./server/route/advance.route");
+app.use("/advance", advanceRoutes); // Ensure this is correct!
+
 
 
 const PORT = process.env.PORT || 3000;

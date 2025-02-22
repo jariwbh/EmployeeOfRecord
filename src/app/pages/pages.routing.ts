@@ -48,8 +48,12 @@ export const PagesRoutes: Routes = [
                 path: 'calendar',
                 loadChildren: () => import('./calendar-module/calendar-module.module').then(m => m.CalendarModule),
                 // canActivate: [AuthGuard]
+            },
+            {
+                path: 'advance',
+                loadChildren: () => import('./advance-module/advance-module.module').then(m => m.AdvanceModule),
+                // canActivate: [AuthGuard]
             }
         ]
     }
-
 ];

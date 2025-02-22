@@ -1,0 +1,26 @@
+<div class="advance-form">
+  <h2>Advance Salary Form</h2>
+  <form [formGroup]="advanceForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Amount</mat-label>
+      <input matInput formControlName="amount" type="number" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Employee</mat-label>
+      <mat-select formControlName="employee" required>
+        <mat-option *ngFor="let employee of employees" [value]="employee._id">
+          {{ employee.fullname }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input matInput formControlName="date" type="date" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Reason</mat-label>
+      <textarea matInput formControlName="reason" required></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </form>
+</div>

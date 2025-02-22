@@ -21,6 +21,7 @@
                 <th *ngFor=" let c of employeeData[0].salaryComponent">{{c.component}}</th>
                 <th>Total Presents</th>
                 <th>Total Leave</th>
+                <th>Advance</th>
                 <th>Salary</th>
             </tr>
         </thead>
@@ -38,6 +39,7 @@
                 </ng-container>
                 <td>{{ getTotalPresents(employee) }}</td>
                 <td>{{ getTotalLeave(employee) }}</td>
+                <td>{{ getTotalAdvance(employee) | currency }}</td>
                 <td>{{ calculateSalary(employee) | currency }}</td>
             </tr>
         </tbody>
