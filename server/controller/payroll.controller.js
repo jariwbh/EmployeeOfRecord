@@ -11,4 +11,17 @@ exports.createPayroll = async (req, res) => {
     }
 };
 
+exports.getPayrollById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const payroll = await Payroll.findById(id);
+        if (!payroll) {
+            return res.status(404).json({ error: 'Payroll not found' });
+        }
+        res.status(200).json(payroll);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
 

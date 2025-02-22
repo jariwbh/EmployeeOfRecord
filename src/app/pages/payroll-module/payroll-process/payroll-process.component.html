@@ -1,4 +1,17 @@
 <h1>Payroll Process</h1>
+<div *ngIf="!employeeData || employeeData.length === 0">
+    <p>No data found</p>
+</div>
+<div *ngIf="payrollData">
+    <div style="border: 1px solid #000; padding: 10px; margin: 10px 0;">
+        <div>
+            <p><strong>Month:</strong> {{ payrollData.month }}</p>
+            <p><strong>Year:</strong> {{ payrollData.year }}</p>
+            <p><strong>Processed Date:</strong> {{ payrollData.paymentDate }}</p>
+            <p><strong>Status:</strong> {{ payrollData.status }}</p>
+        </div>
+    </div>
+</div>
 <div *ngIf="employeeData.length > 0">
     <table>
         <thead>
