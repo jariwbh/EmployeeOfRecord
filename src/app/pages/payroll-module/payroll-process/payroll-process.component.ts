@@ -18,13 +18,13 @@ export class PayrollProcessComponent implements OnInit {
     constructor(private employeeService: EmployeeService,
                 private attendanceService: AttendanceService,
                 private payrollService: PayrollService,
-             private _route: ActivatedRoute,) {
+                private _route: ActivatedRoute) {
 
-                    this._route.params.forEach((params) => {
-                        console.log('params =>', params);
-                        this.payrollID = params["id"];      
-                      });
-                 }
+        this._route.params.forEach((params) => {
+            console.log('params =>', params);
+            this.payrollID = params["id"];      
+        });
+    }
 
     async ngOnInit() {
         if(this.payrollID){
@@ -40,7 +40,6 @@ export class PayrollProcessComponent implements OnInit {
             this.payrollData = data;
             console.log('this.payrollData =>', this.payrollData);
         });
-
     }
 
     async fetchEmployeeData() {
@@ -51,7 +50,6 @@ export class PayrollProcessComponent implements OnInit {
     async fetchAttendanceRecords() {
         this.attendanceRecords = await this.attendanceService.getAttendanceRecords().toPromise() || [];
         console.log('this.attendanceRecords =>', this.attendanceRecords);
-      
     }
 
     getTotalPresents(employee: any) {
@@ -59,9 +57,28 @@ export class PayrollProcessComponent implements OnInit {
         return record ? record.length : 0;
     }
 
-    getTotalLeave(employeeId: number): number {
-        const record = this.attendanceRecords.find(record => record.employeeId === employeeId);
-        return record ? record.daysLeave : 0;
+    getTotalDaysInMonth(): number {
+        if (this.payrollData) {
+            const date = new Date(this.payrollData.year, new Date().getMonth() + 1, 0);
+            console.log('date =>', date);
+            return date.getDate();
+        }
+        return 0;
+    }
+
+    getTotalLeave(employee: any): number {
+        const totalPresents = this.getTotalPresents(employee);
+        const totalDaysInMonth = this.getTotalDaysInMonth();
+        return totalDaysInMonth - totalPresents;
+    }
+
+    calculateSalary(employee: any): number {
+        const totalPresents = this.getTotalPresents(employee);
+        const totalDaysInMonth = this.getTotalDaysInMonth();
+        const dailyRate = employee.salaryComponent && employee.salaryComponent.length > 0 
+            ? employee.salaryComponent.reduce((acc: number, component: { value: number }) => acc + component.value, 0) / totalDaysInMonth 
+            : 0;
+        return dailyRate * totalPresents;
     }
 
     processPayroll(): void {

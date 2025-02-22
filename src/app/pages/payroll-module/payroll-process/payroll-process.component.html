@@ -9,6 +9,7 @@
             <p><strong>Year:</strong> {{ payrollData.year }}</p>
             <p><strong>Processed Date:</strong> {{ payrollData.paymentDate }}</p>
             <p><strong>Status:</strong> {{ payrollData.status }}</p>
+            <p><strong>Total Days in Month:</strong> {{ getTotalDaysInMonth() }}</p>
         </div>
     </div>
 </div>
@@ -20,6 +21,7 @@
                 <th *ngFor=" let c of employeeData[0].salaryComponent">{{c.component}}</th>
                 <th>Total Presents</th>
                 <th>Total Leave</th>
+                <th>Salary</th>
             </tr>
         </thead>
         <tbody>
@@ -35,7 +37,8 @@
                     <td>-</td>
                 </ng-container>
                 <td>{{ getTotalPresents(employee) }}</td>
-                <td>{{ getTotalLeave(employee.id) }}</td>
+                <td>{{ getTotalLeave(employee) }}</td>
+                <td>{{ calculateSalary(employee) | currency }}</td>
             </tr>
         </tbody>
     </table>
