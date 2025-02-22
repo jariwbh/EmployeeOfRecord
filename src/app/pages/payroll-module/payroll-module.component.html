@@ -1,1 +1,22 @@
-<h1>PAYROLL MODULE</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Month</th>
+            <th>Year</th>
+            <th>Total Employees</th>
+            <th>Payment Date</th>
+            <th>Amount</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let payroll of payrollData">
+            <td>{{ payroll.month }}</td>
+            <td>{{ payroll.year }}</td>
+            <td>{{ payroll.totalEmployees }}</td>
+            <td>{{ payroll.paymentDate }}</td>
+            <td>{{ payroll.amount }}</td>
+            <td><button (click)="processPayroll(payroll)">Process Payroll</button></td>
+        </tr>
+    </tbody>
+</table>
