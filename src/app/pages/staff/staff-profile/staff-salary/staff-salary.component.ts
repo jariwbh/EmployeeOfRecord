@@ -21,9 +21,10 @@ export class StaffSalaryComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.staff && this.staff.salaryComponent) {
+      console.log('this.staff =>', this.staff);
         this.salaryForm.patchValue({
-            basic: this.staff.salaryComponent.basic,
-            tax: this.staff.salaryComponent.tax
+            basic: this.staff.salaryComponent.find((component: any) => component.component === 'basic')?.value,
+            tax: this.staff.salaryComponent.find((component: any) => component.component === 'tax')?.value
         });
         this.calculateTotalSalary();
     }
