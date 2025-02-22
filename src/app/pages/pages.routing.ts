@@ -43,6 +43,11 @@ export const PagesRoutes: Routes = [
                 path: 'payroll',
                 loadChildren: () => import('./payroll-module/payroll-module.module').then(m => m.PayrollModule),
                 // canActivate: [AuthGuard]
+            },
+            {
+                path: 'calendar',
+                loadChildren: () => import('./calendar-module/calendar-module.module').then(m => m.CalendarModule),
+                // canActivate: [AuthGuard]
             }
         ]
     }

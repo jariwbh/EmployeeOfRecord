@@ -3,8 +3,7 @@ import { EmployeeService } from '../../../services/employee.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-staff-list',
-  templateUrl: './staff-list.component.html',
-  styleUrls: ['./staff-list.component.css']
+  templateUrl: './staff-list.component.html'
 })
 export class StaffListComponent implements OnInit {
   staffList: any[] = [];
